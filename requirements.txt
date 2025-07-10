@@ -1,0 +1,7 @@
+tensorflow
+Flask==2.3.2
+requests==2.31.0
+Pillow==9.5.0
+transformers==4.32.0
+gunicorn
+google-generativeai
