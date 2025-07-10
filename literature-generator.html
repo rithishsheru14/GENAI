@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Literature Generator</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #141414;
+            color: #fff;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #000;
+            padding: 1rem 3rem;
+        }
+
+        .logo h1 {
+            margin: 0;
+            font-size: 24px;
+            color: #e50914;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-right: 20px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        nav ul li a:hover {
+            color: #e50914;
+        }
+
+        /* Generator Section */
+        .generator {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 80vh;
+            background-color: #1c1c1c;
+            padding: 50px 20px;
+        }
+
+        .generator h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .generator form {
+            background-color: #333;
+            padding: 30px;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .generator label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        .generator textarea,
+        .generator select,
+        .generator input[type="number"],
+        .generator input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #222;
+            color: #fff;
+        }
+
+        .generator textarea {
+            height: 100px;
+        }
+
+        .generator input[type="submit"] {
+            background-color: #e50914;
+            color: #fff;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        .generator input[type="submit"]:hover {
+            background-color: #f40612;
+        }
+
+        /* Dark input field styles */
+        .generator textarea,
+        .generator select,
+        .generator input[type="number"] {
+            background-color: #222;
+            border: 1px solid #444;
+            color: #fff;
+        }
+
+        .generator textarea:focus,
+        .generator select:focus,
+        .generator input[type="number"]:focus {
+            outline: none;
+            border-color: #e50914;
+        }
+
+        /* Result Section */
+        #result-container {
+            background-color: #222;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 30px;
+            max-width: 600px;
+            text-align: left;
+            display: none; /* Initially hidden */
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #000;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        footer a {
+            color: #e50914;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            color: #f40612;
+        }
+    </style>
+    <script>
+        async function generateLiterature(event) {
+            event.preventDefault();
+            
+            const form = event.target;
+            const formData = new FormData(form);
+
+            // Fetch the generated literature text
+            const response = await fetch('/literature-generator', {
+                method: 'POST',
+                body: formData
+            });
+
+            const result = await response.json();
+
+            // Display the generated literature in the result section
+            document.getElementById('result-container').style.display = 'block';
+            document.getElementById('result').textContent = result.generated_text;
+        }
+    </script>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="logo">
+            <h1>Creative Generator</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="image-generator">Image Generator</a></li>
+                <li><a href="music-generator">Music Generator</a></li>
+                <li><a href="literature-generator">Literature Generator</a></li>
+                <li><a href="about">About</a></li>
+                <li><a href="contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <section class="generator">
+        <h2>Generate Your Custom Literature</h2>
+        <form action="/literature-generator" method="POST">
+            <label for="type">Type of Writing:</label>
+            <select id="type" name="type">
+                <option value="poem">Poem</option>
+                <option value="story">Story</option>
+                <option value="article">Article</option>
+            </select><br><br>
+
+            <label for="description">Describe the theme/idea:</label><br>
+            <textarea id="description" name="description" placeholder="e.g., an adventurous journey through the forest"></textarea><br><br>
+
+            <label for="length">Length (word count):</label>
+            <input type="number" id="length" name="length" value="500"><br><br>
+
+            <input type="submit" value="Generate">
+        </form>
+        {% if generated_text %}
+        <h2>Generated Poem:</h2>
+        <p>{{ generated_text }}</p>
+    {% endif %}
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Creative Generator</p>
+    </footer>
+</body>
+</html>

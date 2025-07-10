@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creative Generator | Home</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #121212;
+            color: #fff;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #000;
+            padding: 1rem 3rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.8);
+            transition: background-color 0.3s ease;
+        }
+
+        .logo h1 {
+            margin: 0;
+            font-size: 24px;
+            color: #cc0000;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 10px 15px;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #990000;
+        }
+
+        /* Banner Styles */
+        .banner {
+            text-align: center;
+            padding: 150px 20px;
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9)), url('banner.jpg') no-repeat center center/cover;
+            color: #fff;
+            position: relative;
+        }
+
+        .banner h2 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+            line-height: 1.2;
+            color: #cc0000;
+            animation: fadeIn 2s ease-in;
+        }
+
+        .banner p {
+            font-size: 20px;
+            margin-bottom: 40px;
+            color: rgba(255, 255, 255, 0.8);
+            animation: fadeIn 2s ease-in 0.5s;
+        }
+
+        .cta-buttons a {
+            background-color: #cc0000;
+            color: #fff;
+            padding: 12px 25px;
+            margin: 10px;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 600;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: background-color 0.3s ease-in-out, transform 0.2s;
+            animation: fadeIn 2s ease-in 1s;
+        }
+
+        .cta-buttons a:hover {
+            background-color: #990000;
+            transform: translateY(-5px);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 80px 50px;
+            background: linear-gradient(135deg, #1c1c1c, #333);
+            text-align: center;
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .features h3 {
+            font-size: 36px;
+            margin-bottom: 50px;
+            font-weight: 500;
+            color: #cc0000;
+            animation: slideInFromLeft 1s ease-out;
+        }
+
+        .feature-box-container {
+            display: flex;
+            justify-content: space-evenly;
+            flex-wrap: wrap;
+        }
+
+        .feature-box {
+            background-color: #333;
+            padding: 40px;
+            margin: 20px;
+            border-radius: 10px;
+            width: 300px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.6);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: bounceIn 1s ease;
+        }
+
+        .feature-box h4 {
+            font-size: 24px;
+            color: #cc0000;
+            margin-bottom: 15px;
+            animation: fadeIn 1s ease-in;
+        }
+
+        .feature-box p {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .feature-box:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+            background-color: #292929;
+            color: #000;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #000;
+            color: rgba(255, 255, 255, 0.7);
+            padding: 30px 0;
+            text-align: center;
+        }
+
+        footer a {
+            color: #cc0000;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            color: #990000;
+        }
+
+        /* Animated Cat */
+        .cat {
+            position: absolute;
+            top: 10%;
+            left: -200px;
+            width: 150px;
+            height: 150px;
+            background-image: url('cat.png'); /* replace with your cat image */
+            background-size: cover;
+            animation: moveCat 15s linear infinite;
+            z-index: 10;
+        }
+
+        @keyframes moveCat {
+            0% {
+                left: -200px;
+                top: 10%;
+            }
+            50% {
+                left: 100%;
+                top: 50%;
+            }
+            100% {
+                left: -200px;
+                top: 10%;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideInFromLeft {
+            from {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes bounceIn {
+            from {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.2);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header {
+                padding: 1rem;
+            }
+
+            nav ul li {
+                margin-left: 15px;
+            }
+
+            .banner h2 {
+                font-size: 36px;
+            }
+
+            .banner p {
+                font-size: 18px;
+            }
+
+            .features {
+                padding: 60px 20px;
+            }
+
+            .feature-box {
+                width: 100%;
+                margin: 10px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Cat -->
+    <div class="cat"></div>
+
+    <!-- Header Section -->
+    <header>
+        <div class="logo">
+            <h1>Creative Generator</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="home">Home</a></li>
+                <li><a href="image-generator">Image Generator</a></li>
+                <li><a href="music-generator">Music Generator</a></li>
+                <li><a href="literature-generator">Literature Generator</a></li>
+                <li><a href="about">About</a></li>
+                <li><a href="contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Banner -->
+    <section class="banner">
+        <h2>Generate Stunning Creations</h2>
+        <p>Create beautiful images, music, and literature instantly using AI technology.</p>
+        <div class="cta-buttons">
+            <a href="image-generator" class="btn">Generate Image</a>
+            <a href="music-generator" class="btn">Generate Music</a>
+            <a href="literature-generator" class="btn">Generate Literature</a>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <h3>What You Can Create</h3>
+        <div class="feature-box-container">
+            <div class="feature-box" id="feature-images">
+                <h4>Images</h4>
+                <p>Transform your ideas into stunning visuals effortlessly.</p>
+            </div>
+            <div class="feature-box" id="feature-music">
+                <h4>Music</h4>
+                <p>Create customized music to suit your mood or project.</p>
+            </div>
+            <div class="feature-box" id="feature-literature">
+                <h4>Literature</h4>
+                <p>Generate engaging stories, poems, and articles in seconds.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Creative Generator | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+    </footer>
+
+    <script>
+        // JavaScript to control any additional interactivity if needed
+    </script>
+</body>
+</html>

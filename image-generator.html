@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Generator</title>
+    <style>
+        /* Styles for the Image Generator Page */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #141414;
+            color: #fff;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #000;
+            padding: 1rem 3rem;
+        }
+
+        .logo h1 {
+            margin: 0;
+            font-size: 24px;
+            color: #e50914;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-right: 20px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        nav ul li a:hover {
+            color: #e50914;
+        }
+
+        /* Generator Section */
+        .generator {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 80vh;
+            background-color: #1c1c1c;
+            padding: 50px 20px;
+        }
+
+        .generator h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .generator form {
+            background-color: #333;
+            padding: 30px;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .generator label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        .generator textarea,
+        .generator select,
+        .generator input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #222;
+            color: #fff;
+        }
+
+        .generator textarea::placeholder,
+        .generator select::placeholder,
+        .generator input[type="submit"]::placeholder {
+            color: #ccc;
+        }
+
+        .generator textarea {
+            height: 100px;
+        }
+
+        .generator input[type="submit"] {
+            background-color: #e50914;
+            color: #fff;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        .generator input[type="submit"]:hover {
+            background-color: #f40612;
+        }
+
+        /* Dark input field styles */
+        .generator textarea, .generator select {
+            background-color: #222;
+            border: 1px solid #444;
+            color: #fff;
+        }
+
+        .generator textarea:focus, .generator select:focus {
+            outline: none;
+            border-color: #e50914;
+        }
+
+        /* Image Section */
+        .image-section {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .image-section img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #444;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="logo">
+            <h1>Creative Generator</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="image-generator">Image Generator</a></li>
+                <li><a href="music-generator">Music Generator</a></li>
+                <li><a href="literature-generator">Literature Generator</a></li>
+                <li><a href="about">About</a></li>
+                <li><a href="contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Generator Section -->
+    <section class="generator">
+        <h2>Generate Your Custom Image</h2>
+        <form action="/image-generator" method="POST">
+            <label for="description">Describe the image:</label>
+            <textarea id="description" name="description" placeholder="e.g., a sunset over the mountains with clouds"></textarea>
+
+            <label for="style">Select a Style:</label>
+            <select id="style" name="style">
+                <option value="realistic">Realistic</option>
+                <option value="cartoon">Cartoon</option>
+                <option value="abstract">Abstract</option>
+            </select>
+
+            <label for="resolution">Resolution:</label>
+            <select id="resolution" name="resolution">
+                <option value="1024x1024">1024x1024</option>
+                <option value="1920x1080">1920x1080</option>
+            </select>
+
+            <input type="submit" value="Generate Image">
+        </form>
+
+        <!-- Display the generated image -->
+        {% if image_url %}
+        <div class="image-section">
+            <h3>Generated Image:</h3>
+            <img src="{{ image_url }}" alt="Generated Image">
+        </div>
+        {% endif %}
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Creative Generator | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+    </footer>
+</body>
+</html>

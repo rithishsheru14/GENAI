@@ -1,0 +1,130 @@
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+}
+
+body {
+    background-color: #141414; /* Netflix Dark Theme */
+    color: #ffffff;
+    line-height: 1.6;
+    font-size: 16px;
+}
+
+/* Header Section */
+header {
+    background-color: #141414;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header .logo h1 {
+    color: #e50914; /* Netflix Red */
+    font-size: 28px;
+    font-weight: bold;
+}
+
+header nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+header nav ul li a {
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 18px;
+    transition: color 0.3s ease;
+}
+
+header nav ul li a:hover {
+    color: #e50914;
+}
+
+/* Main Content */
+.generator {
+    padding: 60px 40px;
+    text-align: center;
+}
+
+.generator h2 {
+    font-size: 32px;
+    margin-bottom: 20px;
+    color: #e50914;
+}
+
+.generator form {
+    display: inline-block;
+    background-color: #333333;
+    padding: 20px;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 600px;
+}
+
+.generator form label {
+    font-size: 18px;
+    color: #ffffff;
+}
+
+.generator form textarea,
+.generator form select {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    background-color: #222222;
+    border: none;
+    color: #ffffff;
+    font-size: 16px;
+    border-radius: 4px;
+}
+
+.generator form input[type="submit"] {
+    background-color: #e50914;
+    color: #ffffff;
+    border: none;
+    padding: 12px 24px;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.generator form input[type="submit"]:hover {
+    background-color: #f40612;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #141414;
+    color: #ffffff;
+}
+
+footer p {
+    margin: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    header .logo h1 {
+        font-size: 24px;
+    }
+
+    header nav ul li a {
+        font-size: 16px;
+    }
+
+    .generator form {
+        padding: 15px;
+    }
+
+    .generator form input[type="submit"] {
+        width: 100%;
+    }
+}
